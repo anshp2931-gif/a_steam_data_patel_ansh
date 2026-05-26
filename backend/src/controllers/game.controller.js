@@ -1,56 +1,72 @@
-const Game = require("../models/game.model");
+const gameService = require("../services/game.service");
+const aggregationService = require("../services/aggregation.service");
+const asyncHandler = require("../utils/asyncHandler");
+const ApiResponse = require("../utils/ApiResponse");
 
-// GET all games from MongoDB
-const getAllGames = async (req, res) => {
-  try {
-    // Fetch all games from games collection
-    const games = await Game.find();
+/**
+ * Controller for Game operations
+ */
 
-    // Count total games
-    const totalGames = await Game.countDocuments();
+const createGame = asyncHandler(async (req, res) => {
+  const game = await gameService.createGame(req.body);
+  res.status(201).json(new ApiResponse(201, game, "Game created successfully"));
+});
 
-    res.status(200).json({
-      success: true,
-      message: "All games fetched successfully",
-      totalGames: totalGames,
-      data: games,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Error fetching games",
-      error: error.message,
-    });
-  }
-};
+const getAllGames = asyncHandler(async (req, res) => {
+  const { games, paginationMeta } = await gameService.getGames(req.query);
+  res.status(200).json({
+    success: true,
+    statusCode: 200,
+    message: "Games fetched successfully",
+    pagination: paginationMeta,
+    data: games
+  });
+});
 
-// GET single game by appid
-const getGameByAppId = async (req, res) => {
-  try {
-    const game = await Game.findOne({ appid: req.params.appid });
+const getGameByAppId = asyncHandler(async (req, res) => {
+  const game = await gameService.getGameByAppId(req.params.appid);
+  res.status(200).json(new ApiResponse(200, game, "Game details fetched successfully"));
+});
 
-    if (!game) {
-      return res.status(404).json({
-        success: false,
-        message: "Game not found",
-      });
-    }
+const updateGame = asyncHandler(async (req, res) => {
+  const game = await gameService.updateGame(req.params.appid, req.body);
+  res.status(200).json(new ApiResponse(200, game, "Game updated successfully"));
+});
 
-    res.status(200).json({
-      success: true,
-      message: "Game fetched successfully",
-      data: game,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Error fetching game",
-      error: error.message,
-    });
-  }
-};
+const deleteGame = asyncHandler(async (req, res) => {
+  const game = await gameService.softDeleteGame(req.params.appid);
+  res.status(200).json(new ApiResponse(200, game, "Game soft deleted successfully"));
+});
+
+// Analytics & Aggregations
+const getGenreStats = asyncHandler(async (req, res) => {
+  const stats = await aggregationService.getGenreStats();
+  res.status(200).json(new ApiResponse(200, stats, "Genre statistics fetched successfully"));
+});
+
+const getPriceTierStats = asyncHandler(async (req, res) => {
+  const stats = await aggregationService.getPriceTierStats();
+  res.status(200).json(new ApiResponse(200, stats, "Price tier statistics fetched successfully"));
+});
+
+const getDeveloperRankings = asyncHandler(async (req, res) => {
+  const rankings = await aggregationService.getDeveloperRankings();
+  res.status(200).json(new ApiResponse(200, rankings, "Developer rankings fetched successfully"));
+});
+
+const getReleaseYearTrends = asyncHandler(async (req, res) => {
+  const trends = await aggregationService.getReleaseYearTrends();
+  res.status(200).json(new ApiResponse(200, trends, "Yearly release trends fetched successfully"));
+});
 
 module.exports = {
+  createGame,
   getAllGames,
   getGameByAppId,
+  updateGame,
+  deleteGame,
+  getGenreStats,
+  getPriceTierStats,
+  getDeveloperRankings,
+  getReleaseYearTrends
 };
