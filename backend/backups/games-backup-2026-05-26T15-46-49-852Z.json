@@ -1,0 +1,744 @@
+[
+  {
+    "_id": "6a15c05f093b68429d2afbac",
+    "appid": "730",
+    "name": "Counter-Strike: Global Offensive",
+    "release_year": "2012",
+    "release_date": "21 Aug, 2012",
+    "genres": [
+      "Action",
+      "Free to Play"
+    ],
+    "categories": [
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "Full controller support"
+    ],
+    "price": 0,
+    "recommendations": 3234500,
+    "developer": "Valve",
+    "publisher": "Valve",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "description": "Counter-Strike: Global Offensive (CS: GO) expands upon the team-based action gameplay that it pioneered when it was launched 19 years ago. CS: GO features new maps, characters, weapons, and game modes, and delivers updated versions of the classic CS content.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg",
+    "is_free": true,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.403Z",
+    "updatedAt": "2026-05-26T15:46:39.403Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbad",
+    "appid": "570",
+    "name": "Dota 2",
+    "release_year": "2013",
+    "release_date": "9 Jul, 2013",
+    "genres": [
+      "Action",
+      "Strategy",
+      "Free to Play"
+    ],
+    "categories": [
+      "Multi-player",
+      "Co-op",
+      "Steam Trading Cards",
+      "Steam Workshop",
+      "In-App Purchases"
+    ],
+    "price": 0,
+    "recommendations": 1420500,
+    "developer": "Valve",
+    "publisher": "Valve",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "description": "Every day, millions of players worldwide enter battle as one of over a hundred Dota heroes. And no matter if it's their 10th hour of play or 1,000th, there's always something new to discover.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg",
+    "is_free": true,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.409Z",
+    "updatedAt": "2026-05-26T15:46:39.409Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbae",
+    "appid": "440",
+    "name": "Team Fortress 2",
+    "release_year": "2007",
+    "release_date": "10 Oct, 2007",
+    "genres": [
+      "Action",
+      "Free to Play"
+    ],
+    "categories": [
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "In-App Purchases"
+    ],
+    "price": 0,
+    "recommendations": 845200,
+    "developer": "Valve",
+    "publisher": "Valve",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "description": "Nine distinct classes provide a broad range of tactical abilities and personalities. Constantly updated with new game modes, maps, equipment and, most importantly, hats!",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg",
+    "is_free": true,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.409Z",
+    "updatedAt": "2026-05-26T15:46:39.409Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbaf",
+    "appid": "292030",
+    "name": "The Witcher 3: Wild Hunt",
+    "release_year": "2015",
+    "release_date": "18 May, 2015",
+    "genres": [
+      "RPG"
+    ],
+    "categories": [
+      "Single-player",
+      "Steam Achievements",
+      "Full controller support",
+      "Steam Cloud"
+    ],
+    "price": 39.99,
+    "recommendations": 612400,
+    "developer": "CD PROJEKT RED",
+    "publisher": "CD PROJEKT RED",
+    "platforms": [
+      "windows"
+    ],
+    "description": "You are Geralt of Rivia, mercenary monster slayer. Before you stands a war-torn, monster-infested continent you can explore at will. Your current contract? Tracking down Ciri — the Child of Prophecy, a living weapon that can alter the shape of the world.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.409Z",
+    "updatedAt": "2026-05-26T15:46:39.409Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb0",
+    "appid": "105600",
+    "name": "Terraria",
+    "release_year": "2011",
+    "release_date": "16 May, 2011",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Indie",
+      "RPG"
+    ],
+    "categories": [
+      "Single-player",
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "Steam Workshop",
+      "Steam Cloud"
+    ],
+    "price": 9.99,
+    "recommendations": 745300,
+    "developer": "Re-Logic",
+    "publisher": "Re-Logic",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "description": "Dig, fight, explore, build! Nothing is impossible in this action-packed adventure game. Four Pack also available!",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.410Z",
+    "updatedAt": "2026-05-26T15:46:39.410Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb1",
+    "appid": "218620",
+    "name": "PAYDAY 2",
+    "release_year": "2013",
+    "release_date": "13 Aug, 2013",
+    "genres": [
+      "Action",
+      "RPG"
+    ],
+    "categories": [
+      "Single-player",
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "In-App Purchases",
+      "Full controller support"
+    ],
+    "price": 9.99,
+    "recommendations": 384500,
+    "developer": "OVERKILL - a Starbreeze Studio.",
+    "publisher": "Starbreeze Publishing AB",
+    "platforms": [
+      "windows",
+      "linux"
+    ],
+    "description": "PAYDAY 2 is an action-packed, four-player co-op shooter that once again lets gamers don the masks of the original PAYDAY crew - Dallas, Hoxton, Wolf and Chains - as they descend on Washington DC for an epic crime spree.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/218620/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.410Z",
+    "updatedAt": "2026-05-26T15:46:39.410Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb2",
+    "appid": "252490",
+    "name": "Rust",
+    "release_year": "2018",
+    "release_date": "8 Feb, 2018",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Indie",
+      "Massively Multiplayer",
+      "RPG"
+    ],
+    "categories": [
+      "Multi-player",
+      "Co-op",
+      "MMO",
+      "Steam Trading Cards",
+      "Steam Workshop",
+      "In-App Purchases"
+    ],
+    "price": 39.99,
+    "recommendations": 594200,
+    "developer": "Facepunch Studios",
+    "publisher": "Facepunch Studios",
+    "platforms": [
+      "windows",
+      "mac"
+    ],
+    "description": "The only aim in Rust is to survive. Everything wants you to die - the island’s wildlife and other inhabitants, the environment, other survivors. Do whatever it takes to last another night.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/252490/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.410Z",
+    "updatedAt": "2026-05-26T15:46:39.410Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb3",
+    "appid": "4000",
+    "name": "Garry's Mod",
+    "release_year": "2006",
+    "release_date": "29 Nov, 2006",
+    "genres": [
+      "Indie",
+      "Simulation"
+    ],
+    "categories": [
+      "Single-player",
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "Steam Workshop",
+      "Steam Cloud"
+    ],
+    "price": 9.99,
+    "recommendations": 412500,
+    "developer": "Facepunch Studios",
+    "publisher": "Valve",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "description": "Garry's Mod is a physics sandbox. There aren't any predefined aims or goals. We give you the tools and leave you to play.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/4000/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.411Z",
+    "updatedAt": "2026-05-26T15:46:39.411Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb4",
+    "appid": "381210",
+    "name": "Dead by Daylight",
+    "release_year": "2016",
+    "release_date": "14 Jun, 2016",
+    "genres": [
+      "Action",
+      "Indie"
+    ],
+    "categories": [
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "In-App Purchases",
+      "Full controller support"
+    ],
+    "price": 19.99,
+    "recommendations": 398200,
+    "developer": "Behaviour Interactive Inc.",
+    "publisher": "Behaviour Interactive Inc.",
+    "platforms": [
+      "windows"
+    ],
+    "description": "Dead by Daylight is a multiplayer (4vs1) horror game where one player takes on the role of the savage Killer, and the other four players play as Survivors, trying to escape the Killer and avoid being caught and killed.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/381210/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.411Z",
+    "updatedAt": "2026-05-26T15:46:39.411Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb5",
+    "appid": "230410",
+    "name": "Warframe",
+    "release_year": "2013",
+    "release_date": "25 Mar, 2013",
+    "genres": [
+      "Action",
+      "RPG",
+      "Free to Play"
+    ],
+    "categories": [
+      "Single-player",
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "In-App Purchases",
+      "Full controller support"
+    ],
+    "price": 0,
+    "recommendations": 425300,
+    "developer": "Digital Extremes",
+    "publisher": "Digital Extremes",
+    "platforms": [
+      "windows"
+    ],
+    "description": "Confront warring factions across a sprawling interplanetary system in Warframe. Follow the guidance of the mysterious Lotus and level up your Warframe, build a Sanctuary of destructive firepower, and realize your true potential.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/230410/header.jpg",
+    "is_free": true,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb6",
+    "appid": "271590",
+    "name": "Grand Theft Auto V",
+    "release_year": "2015",
+    "release_date": "14 Apr, 2015",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "categories": [
+      "Single-player",
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "In-App Purchases",
+      "Full controller support"
+    ],
+    "price": 29.99,
+    "recommendations": 1105400,
+    "developer": "Rockstar North",
+    "publisher": "Rockstar Games",
+    "platforms": [
+      "windows"
+    ],
+    "description": "Grand Theft Auto V for PC offers players the option to explore the award-winning world of Los Santos and Blaine County in resolutions of up to 4k and beyond, as well as the chance to experience the game running at 60 frames per second.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb7",
+    "appid": "400080",
+    "name": "Stardew Valley",
+    "release_year": "2016",
+    "release_date": "26 Feb, 2016",
+    "genres": [
+      "RPG",
+      "Simulation",
+      "Indie"
+    ],
+    "categories": [
+      "Single-player",
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "Steam Cloud",
+      "Full controller support"
+    ],
+    "price": 14.99,
+    "recommendations": 320400,
+    "developer": "ConcernedApe",
+    "publisher": "ConcernedApe",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "description": "You've inherited your grandfather's old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home?",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/400080/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb8",
+    "appid": "646570",
+    "name": "Slay the Spire",
+    "release_year": "2019",
+    "release_date": "23 Jan, 2019",
+    "genres": [
+      "Indie",
+      "RPG",
+      "Strategy"
+    ],
+    "categories": [
+      "Single-player",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "Steam Cloud",
+      "Full controller support"
+    ],
+    "price": 24.99,
+    "recommendations": 98400,
+    "developer": "Mega Crit Games",
+    "publisher": "Mega Crit Games",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "description": "We fused card games and roguelikes together to make the best single player deckbuilder we could. Craft a unique deck, encounter bizarre creatures, discover relics of immense power, and Slay the Spire!",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/646570/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbb9",
+    "appid": "359550",
+    "name": "Tom Clancy's Rainbow Six Siege",
+    "release_year": "2015",
+    "release_date": "1 Dec, 2015",
+    "genres": [
+      "Action"
+    ],
+    "categories": [
+      "Multi-player",
+      "Co-op",
+      "Steam Trading Cards",
+      "In-App Purchases",
+      "Full controller support"
+    ],
+    "price": 19.99,
+    "recommendations": 810400,
+    "developer": "Ubisoft Montreal",
+    "publisher": "Ubisoft",
+    "platforms": [
+      "windows"
+    ],
+    "description": "Tom Clancy's Rainbow Six Siege is the latest installment of the acclaimed first-person shooter franchise developed by the renowned Ubisoft Montreal studio.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/359550/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbba",
+    "appid": "1145360",
+    "name": "Hades",
+    "release_year": "2020",
+    "release_date": "17 Sep, 2020",
+    "genres": [
+      "Action",
+      "Indie",
+      "RPG"
+    ],
+    "categories": [
+      "Single-player",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "Full controller support",
+      "Steam Cloud"
+    ],
+    "price": 24.99,
+    "recommendations": 184500,
+    "developer": "Supergiant Games",
+    "publisher": "Supergiant Games",
+    "platforms": [
+      "windows",
+      "mac"
+    ],
+    "description": "Defy the god of the dead as you hack and slash out of the Underworld in this rogue-like dungeon crawler from the creators of Bastion and Transistor.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/1145360/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbbb",
+    "appid": "220",
+    "name": "Half-Life 2",
+    "release_year": "2004",
+    "release_date": "16 Nov, 2004",
+    "genres": [
+      "Action"
+    ],
+    "categories": [
+      "Single-player",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "Steam Workshop",
+      "Steam Cloud",
+      "Full controller support"
+    ],
+    "price": 9.99,
+    "recommendations": 125000,
+    "developer": "Valve",
+    "publisher": "Valve",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "description": "1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valve's debut title wins more than 50 game-of-the-year awards on its way to being named 'Best PC Game Ever' by PC Gamer.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/220/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbbc",
+    "appid": "620",
+    "name": "Portal 2",
+    "release_year": "2011",
+    "release_date": "18 Apr, 2011",
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "categories": [
+      "Single-player",
+      "Co-op",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "Steam Workshop",
+      "Steam Cloud",
+      "Full controller support"
+    ],
+    "price": 9.99,
+    "recommendations": 284300,
+    "developer": "Valve",
+    "publisher": "Valve",
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "description": "The Co-Op mode in Portal 2 features a unique two-player campaign with its own story, test chambers, and two new characters. This new mode forces players to reconsider everything they thought they knew about portals.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/620/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbbd",
+    "appid": "1245620",
+    "name": "Elden Ring",
+    "release_year": "2022",
+    "release_date": "24 Feb, 2022",
+    "genres": [
+      "RPG",
+      "Action"
+    ],
+    "categories": [
+      "Single-player",
+      "Multi-player",
+      "Co-op",
+      "Steam Achievements",
+      "Full controller support",
+      "Steam Cloud"
+    ],
+    "price": 59.99,
+    "recommendations": 495000,
+    "developer": "FromSoftware Inc.",
+    "publisher": "Bandai Namco Entertainment",
+    "platforms": [
+      "windows"
+    ],
+    "description": "THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbbe",
+    "appid": "782330",
+    "name": "DOOM Eternal",
+    "release_year": "2020",
+    "release_date": "19 Mar, 2020",
+    "genres": [
+      "Action"
+    ],
+    "categories": [
+      "Single-player",
+      "Multi-player",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "Full controller support",
+      "Steam Cloud"
+    ],
+    "price": 39.99,
+    "recommendations": 142000,
+    "developer": "id Software",
+    "publisher": "Bethesda Softworks",
+    "platforms": [
+      "windows"
+    ],
+    "description": "Hell’s armies have invaded Earth. Become the Slayer in an epic single-player campaign to conquer demons across dimensions and stop the final destruction of humanity. The only thing they fear... is you.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/782330/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.412Z",
+    "updatedAt": "2026-05-26T15:46:39.412Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbbf",
+    "appid": "812140",
+    "name": "Assassin's Creed Odyssey",
+    "release_year": "2018",
+    "release_date": "5 Oct, 2018",
+    "genres": [
+      "Action",
+      "Adventure",
+      "RPG"
+    ],
+    "categories": [
+      "Single-player",
+      "Steam Achievements",
+      "Steam Trading Cards",
+      "In-App Purchases",
+      "Full controller support"
+    ],
+    "price": 59.99,
+    "recommendations": 115000,
+    "developer": "Ubisoft Quebec",
+    "publisher": "Ubisoft",
+    "platforms": [
+      "windows"
+    ],
+    "description": "Choose your fate in Assassin's Creed® Odyssey. From outcast to living legend, embark on an odyssey to uncover the secrets of your past and change the fate of Ancient Greece.",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/812140/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.413Z",
+    "updatedAt": "2026-05-26T15:46:39.413Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbc0",
+    "appid": "1091500",
+    "name": "Cyberpunk 2077",
+    "release_year": "2020",
+    "release_date": "9 Dec, 2020",
+    "genres": [
+      "RPG",
+      "Action"
+    ],
+    "categories": [
+      "Single-player",
+      "Steam Achievements",
+      "Full controller support",
+      "Steam Cloud"
+    ],
+    "price": 59.99,
+    "recommendations": 412000,
+    "developer": "CD PROJEKT RED",
+    "publisher": "CD PROJEKT RED",
+    "platforms": [
+      "windows"
+    ],
+    "description": "Cyberpunk 2077 is an open-world, action-adventure RPG set in the megalopolis of Night City, where you play as a cyberpunk mercenary wrapped up in a do-or-die fight for survival. Improved and featuring all-new free additional content!",
+    "header_image": "https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg",
+    "is_free": false,
+    "isDeleted": false,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.413Z",
+    "updatedAt": "2026-05-26T15:46:39.413Z"
+  },
+  {
+    "_id": "6a15c05f093b68429d2afbc1",
+    "appid": "228980",
+    "name": "Steam 3D-Demo Game",
+    "release_year": "2013",
+    "release_date": "1 Jan, 2013",
+    "genres": [
+      "Indie"
+    ],
+    "categories": [
+      "Single-player"
+    ],
+    "price": 0.99,
+    "recommendations": 100,
+    "developer": "IndieDev Studio",
+    "publisher": "IndieDev Studio",
+    "platforms": [
+      "mac"
+    ],
+    "description": "A very basic indie game demonstration used for testing standard Mac deployment.",
+    "header_image": "",
+    "is_free": false,
+    "isDeleted": true,
+    "__v": 0,
+    "createdAt": "2026-05-26T15:46:39.413Z",
+    "updatedAt": "2026-05-26T15:46:39.413Z"
+  }
+]
