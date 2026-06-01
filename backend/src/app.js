@@ -9,6 +9,12 @@ const gameRoutes = require("./routes/game.routes");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const healthRoutes = require("./routes/health.routes");
+const searchRoutes = require("./routes/search.routes");
+const analyticsRoutes = require("./routes/analytics.routes");
+const statsRoutes = require("./routes/stats.routes");
+const jwtRoutes = require("./routes/jwt.routes");
+const middlewareRoutes = require("./routes/middleware.routes");
+const adminRoutes = require("./routes/admin.routes");
 
 const app = express();
 
@@ -33,6 +39,12 @@ app.use("/api/v1/health", healthRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/games", gameRoutes);
+app.use("/api/v1/search", searchRoutes);
+app.use("/api/v1/analytics", analyticsRoutes);
+app.use("/api/v1/stats", statsRoutes);
+app.use("/api/v1/jwt", jwtRoutes);
+app.use("/api/v1/middleware", middlewareRoutes);
+app.use("/api/v1", adminRoutes); // Handles /api/v1/admin and /api/v1/protected
 
 // Catch all unmatched routes (404 handler)
 app.use((req, res, next) => {
