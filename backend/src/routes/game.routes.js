@@ -1,78 +1,26 @@
 const express = require("express");
+const Game = require("../models/game.model");
 const {
-  getAllGames,
-  getGameByAppId,
-  createGame,
-  updateGame,
-  partialUpdateGame,
-  deleteGame,
-  checkGameExists,
-  getGameSummary,
-  getGameHistory,
-  archiveGame,
-  restoreGame,
-  getRelatedGames,
-  getGameScreenshots,
-  getGameTrailers,
-  getGameReviews,
-  addGameReview,
-  updateGameReview,
-  deleteGameReview,
-  getSystemRequirements,
-  getGameDLC,
-  getGameAchievements,
-  getGameLeaderboards,
-  getGameUpdates,
-  getGameNews,
-  getGamesByGenre,
-  getGamesByDeveloper,
-  getGamesByPublisher,
-  getGamesByPlatform,
-  getGamesByTag,
-  getGamesByReleaseYear,
-  getGamesByRating,
-  getGamesByPrice,
-  getGamesByFeature,
-  getFreeToPlayGames,
-  getPaidGames,
-  getDiscountedGames,
-  getEarlyAccessGames,
-  getVrOnlyGames,
-  getControllerSupportGames,
-  getMultiplayerGames,
-  getSingleplayerGames,
-  getCoopGames,
-  getOpenWorldGames,
-  getSurvivalGames,
-  getHorrorGames,
-  getAnimeGames,
-  getIndieGames,
-  getTopRatedGames,
-  sortGamesPriceDesc,
-  sortGamesRatingDesc,
-  sortGamesDownloadsDesc,
-  sortGamesReleaseDateDesc,
-  sortGamesPopularityDesc,
-  getRandomGame,
-  getTrendingGames,
-  getLatestNews,
-  getTrendingNews,
-  getCompareGames,
-  getGameTimeline,
-  getActivityLogs,
-  getNotifications,
-  markNotificationRead,
-  deleteNotification,
-  getSystemInfo,
-  getSystemVersion
+  getAllGames, getGameByAppId, createGame, updateGame, partialUpdateGame, deleteGame,
+  checkGameExists, getGameSummary, getGameHistory, archiveGame, restoreGame, getRelatedGames,
+  getGameScreenshots, getGameTrailers, getGameReviews, addGameReview, updateGameReview, deleteGameReview,
+  getSystemRequirements, getGameDLC, getGameAchievements, getGameLeaderboards, getGameUpdates, getGameNews,
+  getGamesByGenre, getGamesByDeveloper, getGamesByPublisher, getGamesByPlatform, getGamesByTag,
+  getGamesByReleaseYear, getGamesByRating, getGamesByPrice, getGamesByFeature,
+  getFreeToPlayGames, getPaidGames, getDiscountedGames, getEarlyAccessGames, getVrOnlyGames,
+  getControllerSupportGames, getMultiplayerGames, getSingleplayerGames, getCoopGames,
+  getOpenWorldGames, getSurvivalGames, getHorrorGames, getAnimeGames, getIndieGames, getTopRatedGames,
+  sortGamesPriceDesc, sortGamesRatingDesc, sortGamesDownloadsDesc, sortGamesReleaseDateDesc, sortGamesPopularityDesc,
+  getRandomGame, getTrendingGames, getLatestNews, getTrendingNews, getCompareGames, getGameTimeline,
+  getActivityLogs, getNotifications, markNotificationRead, deleteNotification, getSystemInfo, getSystemVersion,
+  getGenreStats, getPriceTierStats, getDeveloperRankings, getReleaseYearTrends
 } = require("../controllers/game.controller");
-const { authProtect } = require("../middlewares/auth.middleware");
-const { authorizeRoles } = require("../middlewares/rbac.middleware");
-const { validateGameInput } = require("../middlewares/validate.middleware");
+const { authProtect, authorizeRoles } = require("../middleware/auth.middleware");
+const { validateGameInput } = require("../middleware/validate.middleware");
 
 const router = express.Router();
 
-// General and Info routes
+// ─── Misc / Info ─────────────────────────────────────────────────────────────
 router.get("/random", getRandomGame);
 router.get("/trending", getTrendingGames);
 router.get("/news/latest", getLatestNews);
@@ -86,7 +34,7 @@ router.delete("/notifications/:id", deleteNotification);
 router.get("/system/info", getSystemInfo);
 router.get("/system/version", getSystemVersion);
 
-// Route Parameter Filters (Needs to go BEFORE dynamic :appid parameter routing)
+// ─── Param-based filters (before /:appid) ────────────────────────────────────
 router.get("/genre/:genre", getGamesByGenre);
 router.get("/developer/:developer", getGamesByDeveloper);
 router.get("/publisher/:publisher", getGamesByPublisher);
@@ -97,7 +45,7 @@ router.get("/rating/:rating", getGamesByRating);
 router.get("/price/:price", getGamesByPrice);
 router.get("/feature/:feature", getGamesByFeature);
 
-// Filtering Routes
+// ─── Filter routes ────────────────────────────────────────────────────────────
 router.get("/filter/free-to-play", getFreeToPlayGames);
 router.get("/filter/paid", getPaidGames);
 router.get("/filter/discounted", getDiscountedGames);
@@ -114,33 +62,30 @@ router.get("/filter/anime", getAnimeGames);
 router.get("/filter/indie", getIndieGames);
 router.get("/filter/top-rated", getTopRatedGames);
 
-// Sorting Routes
+// ─── Sort routes ──────────────────────────────────────────────────────────────
 router.get("/sort/price-desc", sortGamesPriceDesc);
 router.get("/sort/rating-desc", sortGamesRatingDesc);
 router.get("/sort/downloads-desc", sortGamesDownloadsDesc);
 router.get("/sort/releaseDate-desc", sortGamesReleaseDateDesc);
 router.get("/sort/popularity-desc", sortGamesPopularityDesc);
 
-// Exists check 
+// ─── Exists check ────────────────────────────────────────────────────────────
 router.get("/exists/:appid", checkGameExists);
 
-// Core CRUD and Specific Details
+// ─── Core CRUD ───────────────────────────────────────────────────────────────
 router.get("/", getAllGames);
-router.post("/", validateGameInput, createGame); // Temporarily public for easy testing in Postman!
-
+router.post("/", validateGameInput, createGame);
 router.get("/:appid", getGameByAppId);
-router.put("/:appid", validateGameInput, updateGame); // Temporarily public for easy testing!
-router.patch("/:appid", partialUpdateGame); // Temporarily public for easy testing!
-router.delete("/:appid", deleteGame); // Temporarily public for easy testing!
+router.put("/:appid", validateGameInput, updateGame);
+router.patch("/:appid", partialUpdateGame);
+router.delete("/:appid", deleteGame);
 
-
+// ─── Game detail sub-routes ───────────────────────────────────────────────────
 router.get("/:appid/summary", getGameSummary);
 router.get("/:appid/history", getGameHistory);
 router.patch("/:appid/archive", authProtect, authorizeRoles("admin"), archiveGame);
 router.patch("/:appid/restore", authProtect, authorizeRoles("admin"), restoreGame);
 router.get("/:appid/related", getRelatedGames);
-
-// Game Info Sub-routes
 router.get("/:appid/screenshots", getGameScreenshots);
 router.get("/:appid/trailers", getGameTrailers);
 router.get("/:appid/system-requirements", getSystemRequirements);
@@ -150,7 +95,7 @@ router.get("/:appid/leaderboards", getGameLeaderboards);
 router.get("/:appid/updates", getGameUpdates);
 router.get("/:appid/news", getGameNews);
 
-// Reviews Sub-routes
+// ─── Reviews ─────────────────────────────────────────────────────────────────
 router.get("/:appid/reviews", getGameReviews);
 router.post("/:appid/reviews", authProtect, addGameReview);
 router.patch("/:appid/reviews/:reviewId", authProtect, updateGameReview);
