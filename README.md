@@ -48,43 +48,37 @@ This data is used to display games, search and filter records, manage game detai
 a_steam_data_patel_ansh/
 ├── backend/
 │   ├── src/
-│   │   ├── config/             # Connection and env parameters configurations
-│   │   │   ├── db.js           # Mongoose DB connection
-│   │   │   └── env.config.js   # Environment config manager
+│   │   ├── config/             # Connection configurations
+│   │   │   └── db.config.js    # Mongoose DB connection
 │   │   ├── controllers/        # Request handlers (controllers layer)
 │   │   │   ├── auth.controller.js
 │   │   │   ├── game.controller.js
 │   │   │   └── user.controller.js
 │   │   ├── data/               # Static dataset source
 │   │   │   └── steam_games.json# Realistic games list (~22 detailed games)
-│   │   ├── middlewares/        # Custom middleware chain
+│   │   ├── middleware/         # Express middlewares
 │   │   │   ├── auth.middleware.js
 │   │   │   ├── error.middleware.js
-│   │   │   ├── logger.middleware.js
-│   │   │   ├── rbac.middleware.js
-│   │   │   ├── rateLimiter.middleware.js
 │   │   │   └── validate.middleware.js
 │   │   ├── models/             # Schema definitions (data layer)
 │   │   │   ├── game.model.js
 │   │   │   └── user.model.js
 │   │   ├── routes/             # REST Route mappings (routing layer)
+│   │   │   ├── admin.routes.js
+│   │   │   ├── analytics.routes.js
 │   │   │   ├── auth.routes.js
 │   │   │   ├── game.routes.js
 │   │   │   ├── health.routes.js
+│   │   │   ├── jwt.routes.js
+│   │   │   ├── middleware.routes.js
+│   │   │   ├── search.routes.js
+│   │   │   ├── stats.routes.js
 │   │   │   └── user.routes.js
-│   │   ├── scripts/            # Admin execution utilities
-│   │   │   ├── backup.js       # Local JSON database backups
+│   │   ├── scripts/            # Execution utilities
 │   │   │   └── seed.js         # Database seeding system
-│   │   ├── utils/              # Standardized utility wrappers
-│   │   │   ├── ApiError.js
-│   │   │   ├── ApiResponse.js
-│   │   │   ├── asyncHandler.js
-│   │   │   ├── filterBuilder.js
-│   │   │   └── pagination.js
 │   │   ├── app.js              # Express app wiring
 │   │   └── index.js            # Node startup entrypoint
 │   ├── .env                    # Environment key values config file
-│   ├── backups/                # Local data exports directory
 │   └── package.json            # Dependencies and scripts definitions
 ├── frontend/                   # UI Directory
 └── README.md                   # Main Documentation
