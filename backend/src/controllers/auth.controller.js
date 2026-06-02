@@ -1,202 +1,213 @@
-const userService = require("../services/user.service");
 const User = require("../models/user.model");
 const Game = require("../models/game.model");
-const asyncHandler = require("../utils/asyncHandler");
-const ApiResponse = require("../utils/ApiResponse");
-const ApiError = require("../utils/ApiError");
 const jwt = require("jsonwebtoken");
-const config = require("../config/env.config");
 
-/**
- * Controller for User Authentication
- */
-
-const register = asyncHandler(async (req, res) => {
-  const user = await userService.registerUser(req.body);
-  res.status(201).json(new ApiResponse(201, user, "User registered successfully."));
-});
-
-const login = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
-  const result = await userService.loginUser(email, password);
-
-  res.status(200).json(
-    new ApiResponse(
-      200,
-      {
-        user: result.user,
-        token: result.token
-      },
-      "Logged in successfully."
-    )
-  );
-});
-
-const getProfile = asyncHandler(async (req, res) => {
-  // User is already attached by authProtect middleware
-  res.status(200).json(new ApiResponse(200, req.user, "User profile loaded successfully."));
-});
-
-const updateProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-  if (!user) throw new ApiError(404, "User not found");
-
-  if (req.body.username) user.username = req.body.username;
-  if (req.body.email) user.email = req.body.email;
-
-  await user.save();
-
-  const updatedUser = user.toObject();
-  delete updatedUser.password;
-
-  res.status(200).json(new ApiResponse(200, updatedUser, "Profile updated successfully"));
-});
-
-const logout = asyncHandler(async (req, res) => {
-  // Stateless JWT logs out by removing it on the client-side. We return a friendly message.
-  res.status(200).json(new ApiResponse(200, null, "Logged out successfully. Please clear your token."));
-});
-
-// Password recovery controllers
-const forgotPassword = asyncHandler(async (req, res) => {
-  const { email } = req.body;
-  if (!email) throw new ApiError(400, "Please provide an email address");
-  
-  const user = await User.findOne({ email });
-  if (!user) throw new ApiError(404, "No account matches that email address");
-
-  // In real life, send a mail. Here we return a mock link.
-  res.status(200).json(new ApiResponse(200, {
-    resetToken: "mock-reset-token-xyz-12345",
-    instructions: "POST to /api/v1/auth/reset-password with your resetToken and newPassword"
-  }, "Password reset email sent (Mocked)"));
-});
-
-const resetPassword = asyncHandler(async (req, res) => {
-  const { resetToken, newPassword } = req.body;
-  if (!resetToken || !newPassword) {
-    throw new ApiError(400, "resetToken and newPassword are required");
-  }
-
-  // Find some user (for demonstration/seeding context)
-  const user = await User.findOne({ email: "ansh@steamgames.com" });
-  if (!user) throw new ApiError(404, "User context not found");
-
-  user.password = newPassword;
-  await user.save();
-
-  res.status(200).json(new ApiResponse(200, null, "Password reset successfully completed"));
-});
-
-const changePassword = asyncHandler(async (req, res) => {
-  const { oldPassword, newPassword } = req.body;
-  if (!oldPassword || !newPassword) {
-    throw new ApiError(400, "oldPassword and newPassword are required");
-  }
-
-  const user = await User.findById(req.user._id);
-  if (!user) throw new ApiError(404, "User not found");
-
-  const isMatch = await user.comparePassword(oldPassword);
-  if (!isMatch) throw new ApiError(401, "Invalid current password provided");
-
-  user.password = newPassword;
-  await user.save();
-
-  res.status(200).json(new ApiResponse(200, null, "Password updated successfully"));
-});
-
-// Verification and OTPs
-const verifyEmail = asyncHandler(async (req, res) => {
-  const { email, code } = req.body;
-  if (!email || !code) throw new ApiError(400, "Email and verification code are required");
-  res.status(200).json(new ApiResponse(200, null, "Email verified successfully (Mocked)"));
-});
-
-const sendOtp = asyncHandler(async (req, res) => {
-  const { email } = req.body;
-  if (!email) throw new ApiError(400, "Email is required");
-  res.status(200).json(new ApiResponse(200, { otpCode: "123456" }, "OTP code generated and sent (Mocked)"));
-});
-
-// JWT specific routing controllers
-const getJwtProfile = getProfile;
-
-const getJwtDashboard = asyncHandler(async (req, res) => {
-  res.status(200).json(new ApiResponse(200, {
-    sessionTimeLeft: "2 hours",
-    userRole: req.user.role,
-    privilege: "Full Access"
-  }, "JWT protected dashboard stats retrieved"));
-});
-
-const generateToken = asyncHandler(async (req, res) => {
-  const { userId } = req.body;
-  if (!userId) throw new ApiError(400, "userId is required");
-  
-  const token = jwt.sign({ id: userId }, config.jwtSecret, { expiresIn: config.jwtExpiresIn });
-  res.status(200).json(new ApiResponse(200, { token }, "JWT token generated successfully"));
-});
-
-const verifyToken = asyncHandler(async (req, res) => {
-  const { token } = req.body;
-  if (!token) throw new ApiError(400, "token is required");
-
+// Register new user
+const register = async (req, res, next) => {
   try {
-    const decoded = jwt.verify(token, config.jwtSecret);
-    res.status(200).json(new ApiResponse(200, { decoded, valid: true }, "JWT token is valid"));
-  } catch (err) {
-    throw new ApiError(401, "JWT token validation failed: " + err.message);
-  }
-});
+    const { username, email, password, role } = req.body;
 
-const refreshToken = asyncHandler(async (req, res) => {
-  const { token } = req.body;
-  if (!token) throw new ApiError(400, "token is required to refresh");
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) return res.status(400).json({ success: false, message: "Email is already registered." });
 
+    const existingUsername = await User.findOne({ username });
+    if (existingUsername) return res.status(400).json({ success: false, message: "Username is already taken." });
+
+    const user = await User.create({ username, email, password, role: role || "user" });
+    const createdUser = await User.findById(user._id).select("-password");
+
+    res.status(201).json({ success: true, statusCode: 201, data: createdUser, message: "User registered successfully." });
+  } catch (error) { next(error); }
+};
+
+// Login user
+const login = async (req, res, next) => {
   try {
-    const decoded = jwt.verify(token, config.jwtSecret, { ignoreExpiration: true });
-    const newToken = jwt.sign({ id: decoded.id }, config.jwtSecret, { expiresIn: config.jwtExpiresIn });
-    res.status(200).json(new ApiResponse(200, { token: newToken }, "Token refreshed successfully"));
-  } catch (err) {
-    throw new ApiError(400, "Token refresh failed: " + err.message);
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email, isDeleted: { $ne: true } });
+    if (!user) return res.status(401).json({ success: false, message: "Invalid email or password." });
+
+    const isPasswordValid = await user.comparePassword(password);
+    if (!isPasswordValid) return res.status(401).json({ success: false, message: "Invalid email or password." });
+
+    const token = user.generateAuthToken();
+    const userResponse = await User.findById(user._id).select("-password");
+
+    res.status(200).json({ success: true, statusCode: 200, data: { user: userResponse, token }, message: "Logged in successfully." });
+  } catch (error) { next(error); }
+};
+
+// Get profile
+const getProfile = async (req, res, next) => {
+  try {
+    res.status(200).json({ success: true, statusCode: 200, data: req.user, message: "User profile loaded successfully." });
+  } catch (error) { next(error); }
+};
+
+// Update profile
+const updateProfile = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+
+    if (req.body.username) user.username = req.body.username;
+    if (req.body.email) user.email = req.body.email;
+    await user.save();
+
+    const updatedUser = user.toObject();
+    delete updatedUser.password;
+
+    res.status(200).json({ success: true, statusCode: 200, data: updatedUser, message: "Profile updated successfully" });
+  } catch (error) { next(error); }
+};
+
+// Logout
+const logout = async (req, res, next) => {
+  try {
+    res.status(200).json({ success: true, statusCode: 200, data: null, message: "Logged out successfully. Please clear your token." });
+  } catch (error) { next(error); }
+};
+
+// Forgot password
+const forgotPassword = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ success: false, message: "Please provide an email address" });
+
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ success: false, message: "No account matches that email address" });
+
+    res.status(200).json({
+      success: true, statusCode: 200,
+      data: { resetToken: "mock-reset-token-xyz-12345", instructions: "POST to /api/v1/auth/reset-password with your resetToken and newPassword" },
+      message: "Password reset email sent (Mocked)"
+    });
+  } catch (error) { next(error); }
+};
+
+// Reset password
+const resetPassword = async (req, res, next) => {
+  try {
+    const { resetToken, newPassword } = req.body;
+    if (!resetToken || !newPassword) return res.status(400).json({ success: false, message: "resetToken and newPassword are required" });
+
+    const user = await User.findOne({ email: "ansh@steamgames.com" });
+    if (!user) return res.status(404).json({ success: false, message: "User context not found" });
+
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).json({ success: true, statusCode: 200, data: null, message: "Password reset successfully completed" });
+  } catch (error) { next(error); }
+};
+
+// Change password
+const changePassword = async (req, res, next) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+    if (!oldPassword || !newPassword) return res.status(400).json({ success: false, message: "oldPassword and newPassword are required" });
+
+    const user = await User.findById(req.user._id);
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+
+    const isMatch = await user.comparePassword(oldPassword);
+    if (!isMatch) return res.status(401).json({ success: false, message: "Invalid current password provided" });
+
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).json({ success: true, statusCode: 200, data: null, message: "Password updated successfully" });
+  } catch (error) { next(error); }
+};
+
+// Verify email (mocked)
+const verifyEmail = async (req, res, next) => {
+  try {
+    const { email, code } = req.body;
+    if (!email || !code) return res.status(400).json({ success: false, message: "Email and verification code are required" });
+    res.status(200).json({ success: true, statusCode: 200, data: null, message: "Email verified successfully (Mocked)" });
+  } catch (error) { next(error); }
+};
+
+// Send OTP (mocked)
+const sendOtp = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ success: false, message: "Email is required" });
+    res.status(200).json({ success: true, statusCode: 200, data: { otpCode: "123456" }, message: "OTP code generated and sent (Mocked)" });
+  } catch (error) { next(error); }
+};
+
+// JWT specific controllers
+const getJwtDashboard = async (req, res, next) => {
+  try {
+    res.status(200).json({
+      success: true, statusCode: 200,
+      data: { sessionTimeLeft: "2 hours", userRole: req.user.role, privilege: "Full Access" },
+      message: "JWT protected dashboard stats retrieved"
+    });
+  } catch (error) { next(error); }
+};
+
+const generateToken = async (req, res, next) => {
+  try {
+    const { userId } = req.body;
+    if (!userId) return res.status(400).json({ success: false, message: "userId is required" });
+
+    const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN || "7d" });
+    res.status(200).json({ success: true, statusCode: 200, data: { token }, message: "JWT token generated successfully" });
+  } catch (error) { next(error); }
+};
+
+const verifyToken = async (req, res, next) => {
+  try {
+    const { token } = req.body;
+    if (!token) return res.status(400).json({ success: false, message: "token is required" });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    res.status(200).json({ success: true, statusCode: 200, data: { decoded, valid: true }, message: "JWT token is valid" });
+  } catch (error) {
+    return res.status(401).json({ success: false, message: "JWT token validation failed: " + error.message });
   }
-});
+};
 
-const revokeToken = asyncHandler(async (req, res) => {
-  res.status(200).json(new ApiResponse(200, null, "JWT token revoked successfully (Blacklisted)"));
-});
+const refreshToken = async (req, res, next) => {
+  try {
+    const { token } = req.body;
+    if (!token) return res.status(400).json({ success: false, message: "token is required to refresh" });
 
-const getPrivateGames = asyncHandler(async (req, res) => {
-  const games = await Game.find({ isDeleted: { $ne: true } }).limit(3);
-  res.status(200).json(new ApiResponse(200, games, "Access to private games data granted"));
-});
+    const decoded = jwt.verify(token, process.env.JWT_SECRET, { ignoreExpiration: true });
+    const newToken = jwt.sign({ id: decoded.id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN || "7d" });
+    res.status(200).json({ success: true, statusCode: 200, data: { token: newToken }, message: "Token refreshed successfully" });
+  } catch (error) {
+    return res.status(400).json({ success: false, message: "Token refresh failed: " + error.message });
+  }
+};
 
-const getPrivateAnalytics = asyncHandler(async (req, res) => {
-  const stats = {
-    premiumRetention: "94%",
-    activeDownloads: 14500
-  };
-  res.status(200).json(new ApiResponse(200, stats, "Access to private analytics metrics granted"));
-});
+const revokeToken = async (req, res, next) => {
+  try {
+    res.status(200).json({ success: true, statusCode: 200, data: null, message: "JWT token revoked successfully (Blacklisted)" });
+  } catch (error) { next(error); }
+};
+
+const getPrivateGames = async (req, res, next) => {
+  try {
+    const games = await Game.find({ isDeleted: { $ne: true } }).limit(3);
+    res.status(200).json({ success: true, statusCode: 200, data: games, message: "Access to private games data granted" });
+  } catch (error) { next(error); }
+};
+
+const getPrivateAnalytics = async (req, res, next) => {
+  try {
+    const stats = { premiumRetention: "94%", activeDownloads: 14500 };
+    res.status(200).json({ success: true, statusCode: 200, data: stats, message: "Access to private analytics metrics granted" });
+  } catch (error) { next(error); }
+};
 
 module.exports = {
-  register,
-  login,
-  getProfile,
-  updateProfile,
-  logout,
-  forgotPassword,
-  resetPassword,
-  changePassword,
-  verifyEmail,
-  sendOtp,
-  getJwtProfile,
-  getJwtDashboard,
-  generateToken,
-  verifyToken,
-  refreshToken,
-  revokeToken,
-  getPrivateGames,
-  getPrivateAnalytics
+  register, login, getProfile, updateProfile, logout,
+  forgotPassword, resetPassword, changePassword, verifyEmail, sendOtp,
+  getJwtDashboard, generateToken, verifyToken, refreshToken, revokeToken,
+  getPrivateGames, getPrivateAnalytics
 };
