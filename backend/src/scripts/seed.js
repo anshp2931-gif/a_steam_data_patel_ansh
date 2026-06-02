@@ -5,11 +5,10 @@ const path = require("path");
 
 const Game = require("../models/game.model");
 const User = require("../models/user.model");
-const connectDB = require("../config/db");
+const connectDB = require("../config/db.config");
 
 const seedDatabase = async () => {
   try {
-    // Connect to database
     await connectDB();
 
     console.log("Clearing existing database collections...");
@@ -17,7 +16,6 @@ const seedDatabase = async () => {
     await User.deleteMany({});
     console.log("Database cleared successfully.");
 
-    // Load games dataset
     const gamesDataPath = path.join(__dirname, "../data/steam_games.json");
     const games = JSON.parse(fs.readFileSync(gamesDataPath, "utf-8"));
 
@@ -27,15 +25,13 @@ const seedDatabase = async () => {
 
     console.log("Creating default administrator and standard user accounts...");
 
-    // Create Admin User
     await User.create({
       username: "admin",
       email: "admin@steamgames.com",
-      password: "adminpassword123", // Will be hashed automatically by user schema pre-save hook
+      password: "adminpassword123",
       role: "admin"
     });
 
-    // Create Standard User
     await User.create({
       username: "anshpatel",
       email: "ansh@steamgames.com",
@@ -46,8 +42,7 @@ const seedDatabase = async () => {
     console.log("Default users created successfully:");
     console.log("- Admin User: admin@steamgames.com / adminpassword123");
     console.log("- Standard User: ansh@steamgames.com / userpassword123");
-
-    console.log("Database seeding completed successfully! 🎉");
+    console.log("Database seeding completed successfully!");
     process.exit(0);
   } catch (error) {
     console.error("Error during database seeding:", error.message);

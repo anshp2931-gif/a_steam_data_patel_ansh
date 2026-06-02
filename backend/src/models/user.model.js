@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const envConfig = require("../config/env.config");
 
 const userSchema = new mongoose.Schema(
   {
@@ -35,9 +34,7 @@ const userSchema = new mongoose.Schema(
       default: false
     }
   },
-  {
-    timestamps: true
-  }
+  { timestamps: true }
 );
 
 // Hash password before saving
@@ -56,8 +53,8 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 userSchema.methods.generateAuthToken = function () {
   return jwt.sign(
     { id: this._id, role: this.role, username: this.username },
-    envConfig.jwtSecret,
-    { expiresIn: envConfig.jwtExpiresIn }
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRES_IN || "7d" }
   );
 };
 
