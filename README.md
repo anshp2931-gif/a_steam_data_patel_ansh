@@ -1,6 +1,8 @@
-# Steam Games Clone Backend (Complete API & Database Platform)
+# Steam Games
 
-This is a comprehensive, production-ready full-stack backend built with **Node.js, Express.js, and MongoDB (Mongoose)** following the industry-standard **MVC Architecture**. It is fully integrated with a realistic dataset of 22 premium Steam games, and includes dynamic query structures, JWT authorization, role-based access control, analytics aggregations, and automatic backup systems.
+In this project, **Steam data** refers to the game dataset stored in `steam_games.json`. It contains details like game name, appid, price, developer, publisher, genres, platforms, descriptions, and recommendations.
+
+This data is used to display games, search and filter records, manage game details, and generate analytics in the backend API.
 
 ---
 

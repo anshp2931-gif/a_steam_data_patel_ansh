@@ -121,17 +121,18 @@ router.get("/sort/downloads-desc", sortGamesDownloadsDesc);
 router.get("/sort/releaseDate-desc", sortGamesReleaseDateDesc);
 router.get("/sort/popularity-desc", sortGamesPopularityDesc);
 
-// Exists check
+// Exists check 
 router.get("/exists/:appid", checkGameExists);
 
 // Core CRUD and Specific Details
 router.get("/", getAllGames);
-router.post("/", authProtect, authorizeRoles("admin"), validateGameInput, createGame);
+router.post("/", validateGameInput, createGame); // Temporarily public for easy testing in Postman!
 
 router.get("/:appid", getGameByAppId);
-router.put("/:appid", authProtect, authorizeRoles("admin"), validateGameInput, updateGame);
-router.patch("/:appid", authProtect, authorizeRoles("admin"), partialUpdateGame);
-router.delete("/:appid", authProtect, authorizeRoles("admin"), deleteGame);
+router.put("/:appid", validateGameInput, updateGame); // Temporarily public for easy testing!
+router.patch("/:appid", partialUpdateGame); // Temporarily public for easy testing!
+router.delete("/:appid", deleteGame); // Temporarily public for easy testing!
+
 
 router.get("/:appid/summary", getGameSummary);
 router.get("/:appid/history", getGameHistory);
