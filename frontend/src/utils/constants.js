@@ -1,4 +1,13 @@
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+const getApiBaseUrl = () => {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (!envUrl) {
+    return 'http://localhost:5000/api/v1';
+  }
+  const cleanUrl = envUrl.replace(/\/$/, '');
+  return cleanUrl.endsWith('/api/v1') ? cleanUrl : `${cleanUrl}/api/v1`;
+};
+
+export const API_BASE_URL = getApiBaseUrl();
 export const APP_NAME = import.meta.env.VITE_APP_NAME || 'Steam Games Dashboard';
 
 export const ROLES = {
