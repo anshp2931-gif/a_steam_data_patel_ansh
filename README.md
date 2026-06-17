@@ -8,6 +8,7 @@ This data is used to display games, search and filter records, manage game detai
 
 ## 🚀 Key Features Built
 
+### ⚙️ Backend (REST API)
 1. **MVC Architecture & Separation of Concerns**: Core controllers delegate request/response lifecycles, service layers govern business operations, utilities govern helpers, and models dictate Mongo validations.
 2. **JWT-Based Authentication**:
    - User signup and login with secure password hashing via `bcryptjs`.
@@ -39,6 +40,25 @@ This data is used to display games, search and filter records, manage game detai
 8. **Automated Utilities & Seeding**:
    - Database seeding script imports games dataset and default accounts.
    - Data backup script exports tables locally inside `backups/` directories.
+
+### 💻 Frontend (Client Dashboard)
+9. **Responsive Design System**:
+   - Fully optimized layouts across desktop, tablet, and mobile viewports.
+   - Adaptive vertical sidebar with collapse toggle states and responsive spacing.
+   - Sticky navbar with integrated global search box and responsive settings menus.
+10. **Redux Toolkit State Management**:
+    - Centralized global store managing authentication sessions, active theme states, responsive UI properties, and list configurations.
+    - Specialized slices: `authSlice` for user session handling, `gameSlice` for library state, `uiSlice` for layout sizing, and `userSlice` for system admin listings.
+11. **MUI v9 & Data Grid Integration**:
+    - Advanced games list utilizing `@mui/x-data-grid` featuring built-in client-side sorting, pagination, and columns toggle.
+    - Standardized feedback elements: Skeleton loaders, custom empty states, error fallbacks, and confirm modals.
+12. **Data Visualizations via Recharts**:
+    - Modern charts visualizing database metrics: Genre share distributions, pricing group bars, developer recommendation lists, and year-by-year release trend curves.
+13. **Robust Client Router & Guards**:
+    - Route protection with authentication middleware checks for private dashboard directories.
+    - Role audits mapping admin-only view controls (Add, Edit, Delete and user list routes).
+14. **Form Validation with Formik & Yup**:
+    - Strictly validated inputs with detailed inline alerts covering logins, signups, and game catalog update schemas.
 
 ---
 
@@ -81,6 +101,28 @@ a_steam_data_patel_ansh/
 │   ├── .env                    # Environment key values config file
 │   └── package.json            # Dependencies and scripts definitions
 ├── frontend/                   # UI Directory
+│   ├── public/                 # Static visual assets & SVGs
+│   ├── src/
+│   │   ├── assets/             # Local images & UI icons
+│   │   ├── components/         # Reusable layouts and visual components
+│   │   │   ├── common/         # Modals, inputs, skeleton screens, stats cards
+│   │   │   └── layout/         # Navbar, Sidebar, Page wrappers, Error Boundary
+│   │   ├── pages/              # View pages mapped to routes
+│   │   │   ├── auth/           # Login & Registration views
+│   │   │   ├── dashboard/      # Metrics home & Recharts analytics
+│   │   │   ├── errors/         # 404 page
+│   │   │   ├── games/          # Catalog list, detail page, dynamic edit forms
+│   │   │   ├── profile/        # User profile details and configuration settings
+│   │   │   └── users/          # Users list (Admin only)
+│   │   ├── routes/             # Client-side router logic & route guards
+│   │   ├── services/           # Axios interceptor setups & fetcher functions
+│   │   ├── store/              # Redux Toolkit global store configuration
+│   │   ├── theme/              # Custom MUI styling themes
+│   │   └── utils/              # Client constants & helper methods
+│   ├── .env                    # Client environment endpoint specifications
+│   ├── tailwind.config.js      # Styling framework definitions
+│   ├── vite.config.js          # Vite configuration options
+│   └── package.json            # Client dependencies configurations
 └── README.md                   # Main Documentation
 ```
 
@@ -88,16 +130,15 @@ a_steam_data_patel_ansh/
 
 ## 🛠️ Installation & Setup
 
+### ⚙️ Backend Setup
 1. **Navigate to the Backend Directory**:
    ```bash
    cd backend
    ```
-
 2. **Install Node modules**:
    ```bash
    npm install
    ```
-
 3. **Database Seeding**:
    Populate MongoDB automatically with default admin/user credentials and 22 premium Steam games:
    ```bash
@@ -106,7 +147,6 @@ a_steam_data_patel_ansh/
    *Seeded Users:*
    - **Admin Account**: `admin@steamgames.com` / `adminpassword123`
    - **User Account**: `ansh@steamgames.com` / `userpassword123`
-
 4. **Launch Server**:
    - For local development:
      ```bash
@@ -116,11 +156,35 @@ a_steam_data_patel_ansh/
      ```bash
      npm start
      ```
-
 5. **Backup Database Collections**:
    Export all data tables to local backups at any time:
    ```bash
    npm run backup
+   ```
+
+### 💻 Frontend Setup
+1. **Navigate to the Frontend Directory**:
+   ```bash
+   cd ../frontend
+   ```
+2. **Install Node modules**:
+   ```bash
+   npm install
+   ```
+3. **Configure Environment Variables**:
+   Create a `.env` file in the `frontend` folder containing:
+   ```env
+   VITE_API_URL=http://localhost:5000/api/v1
+   ```
+4. **Launch Local Server**:
+   ```bash
+   npm run dev
+   ```
+   The application dashboard will open on [http://localhost:5173](http://localhost:5173).
+5. **Compile Assets**:
+   For production builds:
+   ```bash
+   npm run build
    ```
 
 ---
@@ -167,6 +231,7 @@ a_steam_data_patel_ansh/
 
 ## 🏆 Checklist Requirements Completed
 
+### ⚙️ Backend Checklist
 - [x] **Node.js, Express, MongoDB (Mongoose)** connection & configuration setup inside custom config.
 - [x] **MVC Architecture** with strict layer divisions: `models`, `services`, `controllers`, `routes`.
 - [x] **Database Seeding script** populating initial data efficiently.
@@ -176,3 +241,12 @@ a_steam_data_patel_ansh/
 - [x] **Custom Middleware Chain**: Global API error handlers, custom rate limiters, request log systems.
 - [x] **Advanced Aggregations**: match, group, project, sort stages used on multiple complex metrics.
 - [x] **Robust Local backup systems** exporting database documents automatically.
+
+### 💻 Frontend Checklist
+- [x] **Vite & React 19 Client Environment** setup with Tailwind CSS and custom Material UI (MUI) v9 configurations.
+- [x] **Redux Toolkit Slices** for synchronizing application global state (auth, UI settings, active game views, and registered users).
+- [x] **Fully Responsive Dashboard Layout** with vertical collapse sidebar and top navbar search bindings.
+- [x] **Interactive Data Analytics** integrating Recharts charts plotting developer rankings, price segments, release years, and genre distributions.
+- [x] **Client-Side Filtering & Multi-Column Sorting** utilizing responsive `@mui/x-data-grid` data grids.
+- [x] **Auth Guarded Routes** managing private views (`ProtectedRoute`) and administrative settings sections (`AdminRoute`).
+- [x] **Formik Form Controls with Yup Validations** protecting login, register, profile, and game update schemas.
