@@ -27,6 +27,15 @@ const NF = { isDeleted: { $ne: true } };
 const getAllGames = async (req, res, next) => {
   try {
     const filter = { ...NF };
+    if (req.query.search) {
+      const searchRegex = new RegExp(req.query.search.trim(), "i");
+      filter.$or = [
+        { name: searchRegex },
+        { appid: req.query.search.trim() },
+        { developer: searchRegex },
+        { publisher: searchRegex }
+      ];
+    }
     if (req.query.genre) filter.genres = { $in: [new RegExp(req.query.genre, "i")] };
     if (req.query.developer) filter.developer = new RegExp(req.query.developer, "i");
     if (req.query.publisher) filter.publisher = new RegExp(req.query.publisher, "i");
@@ -177,7 +186,7 @@ const addGameReview = async (req, res, next) => {
   try {
     const game = await Game.findOne({ appid: req.params.appid, ...NF });
     if (!game) return notFound(res, "Game not found");
-    game.reviews.push({ username: req.user.username, reviewText: req.body.reviewText, rating: parseInt(req.body.rating) });
+    game.reviews.push({ username: req.user?.username || req.body.author || "Anonymous", reviewText: req.body.reviewText, rating: parseInt(req.body.rating) });
     const total = game.reviews.length;
     game.rating = Math.round((game.reviews.reduce((s, r) => s + r.rating, 0) / total) * 10) / 10;
     await game.save();
@@ -191,7 +200,7 @@ const updateGameReview = async (req, res, next) => {
     if (!game) return notFound(res, "Game not found");
     const review = game.reviews.id(req.params.reviewId);
     if (!review) return notFound(res, "Review not found");
-    if (review.username !== req.user.username && req.user.role !== "admin") return res.status(403).json({ success: false, message: "Not authorized to update this review" });
+    if (req.user && review.username !== req.user.username && req.user.role !== "admin") return res.status(403).json({ success: false, message: "Not authorized to update this review" });
     if (req.body.reviewText) review.reviewText = req.body.reviewText;
     if (req.body.rating) review.rating = parseInt(req.body.rating);
     const total = game.reviews.length;
@@ -207,7 +216,7 @@ const deleteGameReview = async (req, res, next) => {
     if (!game) return notFound(res, "Game not found");
     const review = game.reviews.id(req.params.reviewId);
     if (!review) return notFound(res, "Review not found");
-    if (review.username !== req.user.username && req.user.role !== "admin") return res.status(403).json({ success: false, message: "Not authorized to delete this review" });
+    if (req.user && review.username !== req.user.username && req.user.role !== "admin") return res.status(403).json({ success: false, message: "Not authorized to delete this review" });
     game.reviews.pull(req.params.reviewId);
     const total = game.reviews.length;
     game.rating = total > 0 ? Math.round((game.reviews.reduce((s, r) => s + r.rating, 0) / total) * 10) / 10 : 0;
