@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   ROOT VARIABLES
+   ============================================ */
+:root {
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 72px;
+  --navbar-height: 64px;
+  --transition-speed: 0.3s;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Dark mode body */
+.dark body,
+body.dark-mode {
+  background: linear-gradient(135deg, #0a0e1a 0%, #131827 100%);
+  color: #f1f5f9;
+}
+
+/* Light mode body */
+body.light-mode {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* ============================================
+   SCROLLBAR STYLES
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb,
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover,
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+.light-mode ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITIES
+   ============================================ */
+@layer components {
+  .glass {
+    background: rgba(26, 31, 53, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(148, 163, 184, 0.08);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    position: relative;
+    border: none;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+  }
+
+  .stat-card {
+    @apply rounded-xl p-6 transition-all duration-300;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 0.06) 25%,
+    rgba(148, 163, 184, 0.12) 50%,
+    rgba(148, 163, 184, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ============================================
+   MUI OVERRIDES
+   ============================================ */
+.MuiDataGrid-root {
+  border: none !important;
+}
+
+.MuiDataGrid-columnHeaders {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08) !important;
+}
+
+.MuiDataGrid-cell {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.05) !important;
+}
+
+.MuiDataGrid-row:hover {
+  background: rgba(99, 102, 241, 0.04) !important;
+}
+
+/* ============================================
+   PAGE TRANSITIONS
+   ============================================ */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
